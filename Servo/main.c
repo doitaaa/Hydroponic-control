@@ -12,17 +12,18 @@
 #include "DHT.h"
 int main(void)
 {
-	volatile double temp;
-	volatile double hum;
+	double temp;
+	double hum;
+	
 	DDRD|=(1<<PD4)|(1<<PD5);
-	servoHandle servoA;
-	servoHandle servoB;
-	init_servo('A',&servoA);
-	init_servo('B',&servoB);
-	uint8_t pos = 0;
-	uint8_t pos1 = 180;
-	pump_handle pump1;
-	init_pump(&pump1,'A', 0, 'A', 1);
+	
+	servosHandle servos;
+	init_servos(&servos);
+	
+	pump_handle pumpPh;
+	init_pump(&pumpPh,'A', 0, 'A', 1);
+	pump_handle pumpNutrients;
+	init_pump(&pumpNutrients,'A', 2, 'A', 3);
 	DHT_Setup();
     while(1)
     {
