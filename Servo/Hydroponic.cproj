@@ -84,7 +84,7 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Demo.c">
+    <Compile Include="config.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="DHT.c">
