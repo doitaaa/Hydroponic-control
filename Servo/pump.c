@@ -16,9 +16,40 @@ uint8_t init_pump(pump_handle* pump, uint8_t dir_port, uint8_t dir_pin, uint8_t 
 	pump->step_pin = step_pin;
 	pump->step_port = step_port;
 	//setting the direction and step pins as outputs
-	PinMode(dir_port, dir_pin, Output);
-	DigitalWrite(dir_port,dir_pin,True);
-	PinMode(step_port,step_pin,Output);
+	switch (pump->dir_port)
+	{
+		case ('A'):
+			SETBIT(DDRA,pump->dir_pin);
+			SETBIT(PORTA,pump->dir_pin);
+			break;
+		case ('B'):
+			SETBIT(DDRB,pump->dir_pin);
+			SETBIT(PORTB,pump->dir_pin);
+			break;
+		case ('C'):
+			SETBIT(DDRC,pump->dir_pin);
+			SETBIT(PORTC,pump->dir_pin);
+			break;
+		case ('D'):
+			SETBIT(DDRD,pump->dir_pin);
+			SETBIT(PORTD,pump->dir_pin);
+			break;
+	}
+	switch (pump->step_port)
+	{
+		case ('A'):
+		SETBIT(DDRA,pump->step_pin);
+		break;
+		case ('B'):
+		SETBIT(DDRB,pump->step_pin);
+		break;
+		case ('C'):
+		SETBIT(DDRC,pump->step_pin);
+		break;
+		case ('D'):
+		SETBIT(DDRD,pump->step_pin);
+		break;
+	}
 	return 1;
 }
 //step the required number of steps while accounting for micro stepping 
@@ -28,9 +59,37 @@ static uint8_t step_stepper(pump_handle* pump, uint16_t steps)
 	uint8_t port = pump->step_port;
 	for (uint16_t i = 0; i < steps * MICRO_STEP; i++)
 	{
-		DigitalWrite(step_port, step_pin, True);
+		switch (port)
+		{
+			case ('A'):
+			SETBIT(PORTA, pin);
+			break;
+			case ('B'):
+			SETBIT(PORTB, pin);
+			break;
+			case ('C'):
+			SETBIT(PORTC, pin);
+			break;
+			case ('D'):
+			SETBIT(PORTD, pin);
+			break;
+		}
 		_delay_ms(DELAY_PERIOD);
-		DigitalWrite(step_port, step_pin, False);
+		switch (port)
+		{
+			case ('A'):
+			CLRBIT(PORTA, pin);
+			break;
+			case ('B'):
+			CLRBIT(PORTB, pin);
+			break;
+			case ('C'):
+			CLRBIT(PORTC, pin);
+			break;
+			case ('D'):
+			CLRBIT(PORTD, pin);
+			break;
+		}
 		_delay_ms(DELAY_PERIOD);
 	}
 	return 1;

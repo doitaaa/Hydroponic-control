@@ -9,11 +9,7 @@
 
 #ifndef SERVO_H_
 #define SERVO_H_
-
 #include "stdmacros.h"
-#define _Ph 1
-#define _EC 2
-
 typedef struct{
 	uint8_t posPh;
 	uint8_t posNutrients;
@@ -21,7 +17,7 @@ typedef struct{
 
 // note that each servo should be connected to a PWM output 
 int init_servos(servosHandle* servos);
-int move_servo(double pos, servosHandle* servos, uint8_t selector); // pos in degrees , selector _Ph or _EC
+int move_servo(double pos, servosHandle* servos, uint8_t selector); // pos in degrees , selector _Ph or _Nutirents
 
 
 
