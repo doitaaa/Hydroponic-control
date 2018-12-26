@@ -12,6 +12,7 @@
 #define PUMP_H_
 
 #include "stdmacros.h"
+#include "IO_Macros.h"
 
 #define STEP_ANGLE 1.8
 #define ANGLE_PER_ML 1890
