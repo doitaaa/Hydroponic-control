@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Atmel Studio Solution File, Format Version 11.00
-Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "Hydroponic", "Servo\Hydroponic.cproj", "{BD38FB44-79C1-44EF-A99E-3CB7F4C857CE}"
+Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "Hydroponic", "Source\Hydroponic.cproj", "{BD38FB44-79C1-44EF-A99E-3CB7F4C857CE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

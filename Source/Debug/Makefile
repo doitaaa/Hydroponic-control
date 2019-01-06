@@ -35,6 +35,7 @@ SUBDIRS :=
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS +=  \
+../ADC.c \
 ../DHT.c \
 ../main.c \
 ../pH.c \
@@ -49,6 +50,7 @@ ASM_SRCS +=
 
 
 OBJS +=  \
+ADC.o \
 DHT.o \
 main.o \
 pH.o \
@@ -57,6 +59,7 @@ servo.o
 
 
 OBJS_AS_ARGS +=  \
+ADC.o \
 DHT.o \
 main.o \
 pH.o \
@@ -65,6 +68,7 @@ servo.o
 
 
 C_DEPS +=  \
+ADC.d \
 DHT.d \
 main.d \
 pH.d \
@@ -73,6 +77,7 @@ servo.d
 
 
 C_DEPS_AS_ARGS +=  \
+ADC.d \
 DHT.d \
 main.d \
 pH.d \
@@ -89,6 +94,8 @@ ADDITIONAL_DEPENDENCIES:=
 OUTPUT_FILE_DEP:= ./makedep.mk
 
 # AVR32/GNU C Compiler
+
+
 
 
 

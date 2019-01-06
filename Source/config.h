@@ -14,11 +14,10 @@
 
 //pumps pins configurations for stepper motor drivers
 #define pumpPhPlus_StepPin
-#define pumpPhPlus_DirPin
 #define pumpPhMinus_StepPin
-#define pumpPhMinus_DirPin
 #define pumpNutrients_StepPin
-#define pumpNutrients_DirPin
+
+//
 
 
 
