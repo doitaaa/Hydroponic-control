@@ -8,9 +8,16 @@
 
 #ifndef ADC_H_
 #define ADC_H_
-#include "stdmacros.h"
+#include "IO_Macros.h"
+#include "config.h"
+#define ADC_resolution 1024
+//buffer for analogue readings
+uint16_t buff[10];
+
 void init_ADC(); // default settings
-void ADC_settings(uint8_t reference, uint8_t presecaler, uint8_t autoTrigger, uint8_t triggerSource);
 uint16_t readAnalog(uint8_t pin);
+uint16_t readAnalog_Average(uint8_t pin);
+double  readVoltage(uint8_t pin);
+double  readVoltage_Average(uint8_t pin);
 
 #endif /* ADC_H_ */
