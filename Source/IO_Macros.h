@@ -7,8 +7,8 @@
 ||  Author: 			Efthymios Koktsidis
 ||	Email:				efthymios.ks@gmail.com
 ||  Compiler:		 	AVR-GCC
-||	Description:		This library contains macros for 
-||						easy port manipulation (similar 
+||	Description:		This library contains macros for
+||						easy port manipulation (similar
 ||						to Arduino).
 ||
 ||	Demo:

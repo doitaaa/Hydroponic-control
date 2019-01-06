@@ -13,6 +13,7 @@
 
 #include "stdmacros.h"
 #include "IO_Macros.h"
+#include "config.h"
 
 #define STEP_ANGLE 1.8
 #define ANGLE_PER_ML 1890
@@ -21,16 +22,14 @@
 #define MICRO_STEP 16
 #define DELAY_PERIOD (0.5 * 1000/(MAX_FREQ * 180 * MICRO_STEP / STEP_ANGLE)) // in milli seconds
 
-typedef struct
+typedef enum
 {
-	uint8_t step_port;
-	uint8_t step_pin;
-	uint8_t dir_port;
-	uint8_t dir_pin;
-} pump_handle;
-
-uint8_t init_pump(pump_handle* pump, uint8_t dir_port, uint8_t dir_pin, uint8_t step_port, uint8_t step_pin);
-static uint8_t step_stepper(pump_handle*, uint16_t steps);
-uint8_t pump(pump_handle*, uint16_t volume);
+	PH_Plus,
+	PH_Minus,
+	Nutrients
+	
+} pump_identifier;
+uint8_t init_pumps();
+uint8_t pump_volume(pump_identifier, uint16_t volume);
 
 #endif /* PUMP_H_ */

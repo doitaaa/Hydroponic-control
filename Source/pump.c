@@ -9,35 +9,54 @@
 
 #include "pump.h"
 //initialize stepper and set dir and step pins to outputs
-uint8_t init_pump(pump_handle* pump, uint8_t dir_port, uint8_t dir_pin, uint8_t step_port, uint8_t step_pin)
-{
-	pump->dir_pin = dir_pin;
-	pump->dir_port = dir_port;
-	pump->step_pin = step_pin;
-	pump->step_port = step_port;
+uint8_t init_pumps()
+{	
 	//setting the direction and step pins as outputs
-	PinMode(dir_port, dir_pin, Output);
-	DigitalWrite(dir_port,dir_pin,True);
-	PinMode(step_port,step_pin,Output);
+	PinMode(pumpPhPlus_StepPin, Output);
+	PinMode(pumpPhMinus_StepPin, Output);
+	PinMode(pumpNutrients_StepPin, Output);
 	return 1;
 }
 //step the required number of steps while accounting for micro stepping 
-static uint8_t step_stepper(pump_handle* pump, uint16_t steps)
+static uint8_t step_stepper(pump_identifier x, uint16_t steps)
 {
-	uint8_t pin = pump->step_pin;
-	uint8_t port = pump->step_port;
-	for (uint16_t i = 0; i < steps * MICRO_STEP; i++)
+	switch (x)
 	{
-		DigitalWrite(step_port, step_pin, True);
-		_delay_ms(DELAY_PERIOD);
-		DigitalWrite(step_port, step_pin, False);
-		_delay_ms(DELAY_PERIOD);
+	case PH_Plus: 
+		for (uint16_t i = 0; i < steps * MICRO_STEP; i++)
+		{
+			DigitalWrite(pumpPhPlus_StepPin, True);
+			_delay_ms(DELAY_PERIOD);
+			DigitalWrite(pumpPhPlus_StepPin, False);
+			_delay_ms(DELAY_PERIOD);
+		}
+		break;
+		
+	case PH_Minus:
+		for (uint16_t i = 0; i < steps * MICRO_STEP; i++)
+		{
+			DigitalWrite(pumpNutrients_StepPin, True);
+			_delay_ms(DELAY_PERIOD);
+			DigitalWrite(pumpNutrients_StepPin, False);
+			_delay_ms(DELAY_PERIOD);
+		}
+		break;
+	case Nutrients:
+		for (uint16_t i = 0; i < steps * MICRO_STEP; i++)
+		{
+			DigitalWrite(pumpPhMinus_StepPin, True);
+			_delay_ms(DELAY_PERIOD);
+			DigitalWrite(pumpPhMinus_StepPin, False);
+			_delay_ms(DELAY_PERIOD);
+		}
+		break;
 	}
+	
 	return 1;
 }
 //volume in ML incriments!!!!!!
-uint8_t pump(pump_handle* pump, uint16_t volume)
+uint8_t pump_volume(pump_identifier x, uint16_t volume)
 {
-	step_stepper(pump, volume * STEP_PER_ML);
+	step_stepper(x, volume * STEP_PER_ML);
 	return 1;
 }
