@@ -11,7 +11,7 @@
 
 #ifndef PH_H_
 #define PH_H_
-#include "stdmacros.h"
+#include "config.h"
 #define GAS_CONSTANT 8.3144
 #define FARADAY_CONSTANT 96485
 #define lN_10 2.3026

@@ -14,7 +14,7 @@
 
 //------ Headers ------//
 #include <inttypes.h>
-#include "stdmacros.h"
+#include "config.h"
 #include "IO_Macros.h"
 #include "DHT_Settings.h"
 //----------------------//
