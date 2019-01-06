@@ -1,6 +1,6 @@
 /*
  * config.h
- * configuration file for servos and pumps
+ * pin and general config file
  * Created: 25-Dec-18 4:29:06 PM
  *  Author: mohamed
  */ 
@@ -8,6 +8,12 @@
 
 #ifndef CONFIG_H_
 #define CONFIG_H_
+
+#define F_CPU 8000000UL
+#include <avr/io.h>
+#include <stdint.h>
+#include <avr/interrupt.h>
+#include <util/delay.h>
 
 //servo configurations
 #define servoPh_pin D, 4 //OC1B
@@ -19,7 +25,7 @@
 #define pumpNutrients_StepPin B, 2
 
 //DHT sensor configurations
-#define DHT_Type	DHT22          //DHT11 or DHT22
+
 #define DHT_Pin		A, 7
 
 //Ph/ECT sensor configurations

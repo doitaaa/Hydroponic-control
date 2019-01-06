@@ -9,8 +9,6 @@
 
 #ifndef SERVO_H_
 #define SERVO_H_
-
-#include "stdmacros.h"
 #include "IO_Macros.h"
 #include "config.h"
 
